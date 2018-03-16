@@ -1,0 +1,548 @@
+ Version 0.1-14
+
+ Corrected a mild infelicity in respect of the rownames
+ of the "summary" component of the object returned by deldir.
+ Made a corresponding adjustment to tile.list.R (triang.list.R
+ was already OK) and tidied up the help files.
+
+ Added a "..." argument to plot.tile.list() (to be passed
+ on to points() and/or text()).
+
+ Added function tileInfo to summarise information about tiles,
+ at the request of John Bothwell.
+ 20/03/2017.
+
+ Added a facility to plot.tile.list() to append the point
+ *numbers* to the plot, with a reasonably minimal amount
+ of effort.
+
+ Added a print method to objects of class "tileInfo".
+
+ Made some corrections and amendments to the help files 
+ tile.list.Rd and plot.tile.list.Rd.
+
+ Wrote help files for tileInfo() and print.tileInfo().
+ 21/03/2017
+
+ Made a minor adjustment to tileInfo(), making the "indivTiles"
+ component of the returned value into a *named* list (with
+ names of the form "tile.ptNum").
+
+ Adjusted the help file for tileInfo() accordingly.
+ 27/03/2017
+
+ Rewrote triMat() after a bug in it was pointed out to me
+ by Jay Call.
+ 22/04/2017
+
+ Installed on CRAN 06/03/2016.
+
+ Version 0.1-13
+ Never installed on CRAN (??? !!!)
+
+ Documented the function which.tile() --- !!!
+ Done 01/11/2016.
+
+ Added the function which.tile() at the request of "RAY".
+ Done 27/08/2016.
+
+ Corrected the rownames of the "summary" component of the
+ object returned by deldir().  Previously these were the indices
+ of the points in their bin-sorted order; when "allsum" gets
+ sorted back into the order of the original points the rownames
+ were retained, in their sorted order.  This made them look
+ anomalous.  Thanks to Pablo Araya-Melo for pointing out this
+ problem.
+ Done 21/07/2016.
+
+ 
+ Version 0.1-12
+
+ Changed the "binsrt" procedure back to using Fortran/Ratfor
+ code but with the code being called directly by .Fortran(),
+ outside of the .Fortran() call to "master".
+
+ Adjusted the code in binsrt.r to calculate "rind" as well as
+ "ind".
+ Done 05/03/2016
+
+ Installed on CRAN 06/03/2016.
+
+ Version 0.1-11
+ Never installed on CRAN
+
+ Changed deldir to do "binsrt" in R code rather than Fortran/Ratfor.
+ Thus we now get the Fortran code to work just with the re-ordered
+ data as if they were the original data, and then adjust the
+ order after the return from the Fortran call.
+ Done 04/03/2016.
+
+ Changed the code of deldir so that the data frame "dirsgs"
+ in the returned list has two new columns "thirdv1" and "thirdv2"
+ which along with "ind1" and "ind2" serve to provide unique
+ identifiers for the endpoints of the tile edges.
+ Done 04/03/2016.
+
+ The code of deldir now explicitly recognises if the argument "x"
+ is of class "ppp" (i.e. is a spatstat planar point pattern) and
+ if "x" is marked and the marks are a vector or a factor and if "z"
+ is NULL, then it sets z equal to the marks.
+ Done 04/03/2016.
+
+ Added function divchain() (generic), divchain.default() and
+ divchain.deldir() to calculate the dividing chain for a tesslation
+ that has been provided with a vector of categorical "weights".
+ Done 04/03/2016.
+
+ Also added a plot method plot.divchain() to plot dividing chains.
+ Done 04/03/2016.
+
+ Fixed the "rw" argument to accept a couple of forms other than
+ c(xmin,xmax,ymin,ymax).  Explicitly a spatstat "owin" object and
+ a matrix such as determines a bounding box for a set of polygons
+ in the "sp" package. (Suggestion of Michael Chirico, 23,24/09/2015.)
+ Done 04/03/2016.
+
+ Version 0.1-10
+ Never installed on CRAN
+
+ To do: Fix the "rw" argument to accept forms other than
+ c(xmin,xmax,ymin,ymax).  (Suggestion of Michael Chirico,
+ 23,24/09/2015.)
+
+ Amended the examples in deldir.Rd to alleviate a possible point
+ of confusion pointed out by Samuel Ackerman.
+ Done 01/08/2015.
+
+ Fixed some typos in deldir.Rd, duplicated.Rd, plot.tile.list.Rd
+ and plot.triang.list.Rd.
+ Done 09/03/2015.
+
+ Added "point type" ("data" or "dummy") information to the lists
+ produced by tile.list() and triang.list().  (This information is
+ present only if there are dummy points specified in the call to
+ deldir().
+ Done 10/03/2015.
+
+ Fixed a few more glitches in the documentation.
+ Done 10/03/2015.
+
+ Version 0.1-9
+ Uploaded to CRAN 09/03/2015.
+
+ Removed period from end of title in the DESCRIPTION file.
+
+ Changed NAMESPACE file to "register" S3 methods.
+
+ Removed "require("polyclip") in plot.tile.list() and
+ change code to use:
+     if(requireNamespace("polyclip",quietly=TRUE)) ....
+ instead.
+
+ Changed URL from http://www.stat.auckland.ac.nz to
+ https://www.stat.auckland.ac.nz in help files and in
+ the DESCRIPTION file.
+
+ The 4 foregoing changes made at the behest of Uwe Ligges.
+
+ Done 09/03/2015.
+
+ Version 0.1-8
+ Uploaded to CRAN 09/03/2015.
+
+ Added a "[.tile.list" method so that tile lists can be
+ subsetted and still retain their class and "rw" attribute.
+ Prompted by an enquiry to R-help from Raphael Päbst, 15/01/2015.
+ Done 09/03/2015.
+
+ Added a component "ind.orig" to the object returned by deldir().
+ This consists of the indices of the points in the original set
+ of (x,y) coordinates provided to the function (before any duplicated
+ points were removed).  Prompted by an enquiry from Daniel
+ McCloy 29/12/14. He wanted the triangle descriptions produced
+ by triang.list() to show these original indices --- as the help
+ file claims they show --- rather than the indices in the set of
+ coordinates after the removal of duplicates.
+ Done 09/03/2015.
+
+ Changed triang.list() to make use of the "original coordinates"
+ referred to above.
+ Done 09/03/2015.
+
+ Revised plot.triang.list() so that it actually tries to plot
+ the (x,y) coordinates of the triangle vertices rather than trying
+ to use (ptNum,x) (!!!) as it previously did.  The problem was
+ caused by xy.coords(tri) using the first two columns of "tri" as
+ the (x,y) coordinates rather than the columns named "x" and "y".
+ I'm ***sure*** that plot.triang.list() *used* to work, i.e. that
+ the columns named "x" and "y" were extracted.  (If "tri" were a
+ list, then components named "x" and "y" would be extracted, and
+ since data frames are lists with components equal to the columns,
+ I would have expected this to work, but it doesn't.  Moreover the
+ help for xy.coords() clearly says that it doesn't.  Go figure.)
+ Prompted by an enquiry from Yinghui Liu, 09/03/2015.
+ Done 09/03/2015.
+
+ Version 0.1-7
+ Uploaded to CRAN 26/11/2014
+
+ Fixed bug with respect to the z "weights"; if there were duplicated
+ points, there was a mismatch of numbers between the z "weights"
+ and the unique collection of points that deldir() works with.
+ Fixed.  Thanks to Ron Peterson for drawing this bug to my attention.
+ Done 26/11/2014.
+
+ Changed the procedure for issuing a message from the initial
+ invocation of deldir() so that it no longer uses cat() but rather
+ calls message().  Requested by Bob O'Hara.
+ Done 21/08/2014.
+
+ Added some material to the description of the "z" argument to deldir()
+ to make it clear that these weights do not affect the tessellation and
+ that deldir does *not* do weighted tessellation.  (Prompted by an
+ enquiry from Garry Gelade.)
+ Done 26/08/2014.
+
+ Version 0.1-6
+ Uploaded to CRAN 03/08/2014
+
+ Corrected the ratfor code dirseg.r and dirout.r.  A rarely occuring
+ bug was possible due to the way the code was previously written.
+ The code made use of the ray joining a circumcentre to the
+ midpoint of an edge of a Delaunay triangle.  It is *possible* for
+ the circumcentre and that midpoint to coincide.  In such a case
+ Fortran seemed to calculate the slope of the ray (zero over zero)
+ to be equal to one.  The result was wrong of course and an error
+ with number nerror = 17 was (fortunately!) thrown.  In retrospect
+ it is "obvious" that the ray should have been taken to join the two
+ circumcentres on opposite sides of the Delaunay edge.  But since
+ these two circumcentres could conceivably coincide it is better
+ to take the slope of the ray to be the negative reciprocal of the
+ slope of the Delaunay edge.  The code now uses this slope.
+
+ Thanks to Pierre Legendre for drawing this bug to my attention.
+ Done 03/08/2014.
+
+ Slight adjustment to plot.tile.list.R (so that when verbose=TRUE
+ and showpoints=TRUE, the points get plotted "at the right time"
+ rather than when the *next* tile gets plotted).
+ Done 18/05/2014.
+
+ Slight adjustment made to plot.tile.list.Rd
+ Done 18/05/2014.
+
+ Version 0.1-5
+
+ Uploaded to CRAN 02/02/2014
+
+ In the help for plot.tile.list() the call to this function that
+ made use of the "clipp" argument has been wrapped in
+   if(require(polyclip)) {
+       ...
+   }
+ so as to avoid errors when the deldir package is used by older
+ versions of R which do not provide the polyclip package.
+ (Change made at the behest of Uwe Ligges.)
+
+ Version 0.1-4
+
+ Uploaded to CRAN 31/01/2014
+ 
+ Fixed up an error in the handling of "x" and "y" coordinates
+ and the "z" weights as columns of a data frame.  The code asked
+ for a third column of the data frame, and there might not be one.
+ Error caught by the CRAN people when the ade4 package threw an
+ error upon calling deldir.
+
+ Changed the protocol so that:
+   * the x coordinates are the column named "x" if there is one
+     else the first column *not* named "y" or "z"
+   * the y coordinates are the column named "y" if there is one
+     else the first column *not* named "x" or "z"
+   * the z weights are the column named "z" if there is one *and*
+     if the z argument is NULL (else the z weights are left to be
+     NULL.
+
+ Version 0.1-3
+
+ Uploaded to CRAN 30/01/2014
+
+ Fixed up references to my web page to refer to my
+ New Zealand web page. (28/01/2014)
+
+ Adjusted code to allow the x argument of deldir() to be
+ a data frame whose names do *not* necessarily include "x",
+ "y", and "z".  In this case the x coordinates are taken to
+ be the first column of the data frame, the y coordinates to
+ be the second column, and z to be the third column if that
+ column exists.
+
+ Version 0.1-2
+
+ Uploaded to CRAN 01/10/2013.
+
+ Adjusted the behaviour of the function plot.tile.list()
+ when verbose=TRUE, very slightly.
+
+ Removed the use.gpclib argument to plot.tile.list()
+ (in accordance with the new behaviour of spatstat).
+
+ Version 0.1-1
+
+ Revised the function "plot.tile.list", changing the behaviour of
+ the colouring of tiles and added the argument "clipwin".
+ Request of Chris Triggs.
+
+ Added the internal function "getCol".
+ 
+ Added the arguments "border", "clipwin" and "warn", and eliminated
+ the (redundant) argument "showrect".
+
+ Added the function "tilePerim" and the internal function
+ "tilePerim0".  Request of Haozhe Zhang.
+
+ Uploaded to CRAN 02 October 2013
+
+ Version 0.0-22 (17 April 2013)
+
+  Fixed the dimensioning of delsgs, dirsgs, and ind in
+  delsegs.r and dirsegs.r.  Had used a "1" as the last
+  dimension and this now throws a "subscript out of range"
+  warning from the compiler.
+
+ Version 0.0-21 (12 October 2012)
+
+  Fixed glitch w.r.t. the z-argument of deldir() --- if
+  "x" was a list with "x" and "y" components, and if "z"
+  was supplied as a separate argument, then "z" got ignored.
+
+  Added a "point number" component to the list produced for
+  each Delaunay triangle by triang.list().
+
+  Added the function duplicatedxy() to determine duplicated
+  points, to make it convenient for the user to eliminate
+  duplicates from a point set before calling deldir().
+  Done at the request of Adrian Baddeley.
+
+ Version 0.0-20 (07 September 2012)
+
+ Removed the elaborate startup message referring to changes
+ from previous versions of "deldir".  Replaced this with
+ message produced by deldir() itself, the first time that
+ it is called in any given session.  Added an argument
+ "suppressMsge" to deldir() allowing the user to keep this
+ message from appearing.
+  Done at the request of Adrian Baddeley.
+
+ Version 0.0-19 (23 April 2012)
+
+ Added warnings in respect of change of "summary" and "delsgs"
+ from matrices to data frames.
+
+ Corrected spelling of "auxiliary" in various places.
+
+ Fixed up the "see also"-s in tile.list() and plot.tile.list().
+
+ Fixed a typo in the help for plot.tile.list().
+
+ Fixed up the "see also" in the help for deldir().
+
+ Version 0.0-18 (21 April 2012)
+
+ At the suggestion of Simon Greener, added the capacity to carry
+ along "auxilliary" variables or "weights" associated with the
+ points being triangulated.
+
+ If supplied these weights appear as a third column of the
+ data frames specifying the triangles in the triangulation,
+ as produced by the function triang.list().
+
+ Version 0.0-17 (03 April 2012)
+
+ Added the function triMat() at the suggestion of
+ Robin Hankin.
+
+ Fixed a glitch in the documentation of deldir()
+ (in the Warning section).
+
+ Tweaked the documentation of plot.tile.list(), plot.triang.list(),
+ and tile.list().
+
+ Version 0.0-16 (04 November 2011)
+
+ Fixed some minor errors in the documentation.
+
+ Added a namespace.
+
+ Version 0.0-15 (12 August 2011)
+
+ Fixed a bug in triang.list(); occasionally triangles would
+ appear in this list which were *not* Delaunay triangles but
+ rather the union of three congtiguous such triangles.  This
+ now no longer happens.
+
+ Fixed some minor infelicities in the Fortran (ratfor) code.
+
+ Removed switch() statements from the ratfor code (and replaced
+ them with a sequence of if's).  It appears that the ratfor
+ compiler that is currently available to me does not handle
+ switch statements properly.  The resulting Fortran code
+ compiled and loaded but led to errors when run.
+
+                       *****************************
+
+ Version 0.0-14 (22 June 2011)
+
+ Put the startup messages into packageStartupMessage()
+ rather than catting them.  At the request of Thierry Onkelinx.
+
+                       *****************************
+
+ Version 0.0-13 (29 November 2010)
+
+ Renamed the directory inst/ratfor.discarded inst/code.discarded
+ and moved the no-longer-used function ind.dup to that directory.
+
+ Added a facility to plot.deldir() to plot the enclosing rectangle "rw".
+
+ Added the same facility to plot.tile.list().
+
+ Added attribute "rw" to the object returned by tile.list() so that
+ the foregoing facility can work.
+
+ Added function triang.list().
+
+ Added function plot.triang.list().
+
+ Added arguments add, xlab, ylab, main, and asp to plot.tile.list().
+
+                       *****************************
+
+ Version 0.0-12 (08 January 2009)
+
+ Fixed a minor glitch in the .First.lib() function.  I had
+ a backspace coded into the message produced, and this upset
+ Sweave.  The backspace had been put in to get things to line
+ up correctly.  Re-arranged things (properly!) so that it is
+ no longer needed.
+
+                       *****************************
+
+ Version 0.0-11 (09 December 2009)
+
+ No change, really.  A tweak that I made to the First() function
+ in version 0.0-10, *without* changing the version number (psigh!)
+ did not propagate to the Windoze and Mac OSX binaries.
+
+ So version 0.0-11 is just the same as the tweaked realization of
+ of version 0.0-10 but with the version number changed so that the
+ tweak will propagate.
+
+                       *****************************
+
+ Version 0.0-10 (16 November 2009)
+
+ Got rid of the call to ind.dup() which used a very rough
+ bit of Fortran code to detect duplicated points, and
+ replaced it with a call to duplicated().
+
+ (Bug pointed out by Bjarke Christensen.)
+
+                       *****************************
+
+ Version 0.0-9 (4 November 2009)
+
+ Added a new function tile.centroids() --- which does the obvious.
+ Motivated by an inquiry from Leandro Moreira.
+
+ Added a ChangeLog
+
+                       *****************************
+
+ Version 0.0-8 (4 April 2009)
+
+ Removed the labels from the x and y vectors in the tile descriptions
+ produced by tile.list.  These labels (which were the row numbers in
+ the dirsgs data frame returned by deldir()) served no useful purpose
+ and were potentially confusing.
+
+                       *****************************
+
+ Versions 0.0-2 through 0.0-7 were not tracked here. :-( Simply forgot
+ about doing this.  I thoroughly *intend* [ :-) ] to get the archives
+ from CRAN and try to document the changes.  Recent ones involved
+ fixing bugs in and adding features to the tile.list() and
+ plot.tile.list() functions.
+
+                       *****************************
+
+ Version 0.0-1 (21 February 2002)
+ This version is simply an adaptation of the Splus version
+ of the package to R.
+
+
+==============================================================================
+The following items relate to the Splus versions of deldir
+==============================================================================
+
+ Version date: 14 February 2002.
+ This version supercedes the version dated 24 April 1999.
+
+ The changes from the version dated 24 April 1999 to the
+ version dated 14 February 2002 were:
+
+	A bug in the procedure for eliminating duplicated points was
+	fixed.  Thanks go to Dr. Berwin Turlach of the Department of
+	Maths and Stats at the University of Western Australia, for
+	spotting this bug.
+
+                       *****************************
+
+ Version date: 24 April 1999.
+ This version supercedes the version dated 26 October 1998.
+
+ The changes from the version dated 26 October 1998 to the
+ version dated 24 April 1999 were:
+
+	(1) The function mipd(), stored in mipd.sf, and the
+	corresponding Fortran subroutine mipd, stored in mipd.r, have
+	been replaced by mnnd() in mnnd.sf and mnnd in mnnd.r.  The
+	function mipd calculated the mean interpoint distance, to be
+	used in constructing dummy point structures of a certain
+	type.  After some reflection it became apparent that the mean
+	interpoint distance was much too large for the intended
+	purpose, and that a more appropriate value was the ``mean
+	nearest neighbour distance'' which is calculated by the new
+	function.  This new value is now used in constructing dummy
+	point structures.
+
+	Note that the operative result is that the resulting dummy
+	point structures contain many more points than before.  The
+	old value caused large numbers of the dummy points to fall
+	outside the data window and therefore to be clipped.
+
+                       *****************************
+
+ Version date: 26 October 1998.
+ This version supercedes the version dated 6 December 1996.
+
+ The changes from the version dated 6 December 1996 to the
+ version dated 26 October 1998 were:
+
+	(1) A ratfor/Fortran routine named ``inside'' has been
+	renamed ``dldins'' to avoid conflict with a name built in to
+	some versions of Splus.
+
+	(2) Some minor corrections have been made to dangerous
+	infelicities in a piece of the ratfor/Fortran code.
+
+	(3) The dynamic loading procedure has been changed to use
+	dyn.load.shared so that the package is easily usable on
+	IRIX systems as well as under SunOS/Solaris.
+
+	(4) The package has been adjusted slightly so that it
+	can easily be installed as a section of a library.  In
+	particular, the dynamic loading is now done by the
+	.First.lib() function rather than from within deldir()
+	itself; reference to an environment variable DYN_LOAD_LIB
+	is no longer needed.
