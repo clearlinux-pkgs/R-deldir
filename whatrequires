@@ -1,5 +1,6 @@
 # This file contains recursive sources that require this package
 R-AER
+R-DAAG
 R-DendSer
 R-Ecdat
 R-Ecfun
@@ -15,6 +16,7 @@ R-bipartite
 R-brms
 R-broom
 R-caret
+R-clue
 R-cowplot
 R-ddalpha
 R-dendextend
@@ -44,6 +46,7 @@ R-sem
 R-seriation
 R-sfsmisc
 R-shinystan
+R-spatstat
 R-spdep
 R-systemfit
 R-tidyverse
