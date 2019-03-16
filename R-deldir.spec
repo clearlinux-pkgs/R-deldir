@@ -4,7 +4,7 @@
 #
 Name     : R-deldir
 Version  : 0.1.16
-Release  : 18
+Release  : 19
 URL      : https://cran.r-project.org/src/contrib/deldir_0.1-16.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/deldir_0.1-16.tar.gz
 Summary  : Delaunay Triangulation and Dirichlet (Voronoi) Tessellation
@@ -36,10 +36,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1549271711
+export SOURCE_DATE_EPOCH=1552749881
 
 %install
-export SOURCE_DATE_EPOCH=1549271711
+export SOURCE_DATE_EPOCH=1552749881
 rm -rf %{buildroot}
 export LANG=C
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -75,8 +75,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export _R_CHECK_FORCE_SUGGESTS_=false
-R CMD check --no-manual --no-examples --no-codoc -l %{buildroot}/usr/lib64/R/library deldir|| : 
-cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
+R CMD check --no-manual --no-examples --no-codoc  deldir || :
 
 
 %files
@@ -114,7 +113,6 @@ cp ~/.stash/* %{buildroot}/usr/lib64/R/library/*/libs/ || :
 /usr/lib64/R/library/deldir/help/paths.rds
 /usr/lib64/R/library/deldir/html/00Index.html
 /usr/lib64/R/library/deldir/html/R.css
-/usr/lib64/R/library/deldir/libs/symbols.rds
 /usr/lib64/R/library/deldir/ratfor/acchk.r
 /usr/lib64/R/library/deldir/ratfor/addpt.r
 /usr/lib64/R/library/deldir/ratfor/adjchk.r
