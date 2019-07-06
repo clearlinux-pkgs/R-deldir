@@ -4,7 +4,7 @@
 #
 Name     : R-deldir
 Version  : 0.1.22
-Release  : 26
+Release  : 27
 URL      : https://cran.r-project.org/src/contrib/deldir_0.1-22.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/deldir_0.1-22.tar.gz
 Summary  : Delaunay Triangulation and Dirichlet (Voronoi) Tessellation
