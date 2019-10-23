@@ -4,7 +4,7 @@
 #
 Name     : R-deldir
 Version  : 0.1.23
-Release  : 28
+Release  : 29
 URL      : https://cran.r-project.org/src/contrib/deldir_0.1-23.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/deldir_0.1-23.tar.gz
 Summary  : Delaunay Triangulation and Dirichlet (Voronoi) Tessellation
@@ -12,6 +12,7 @@ Group    : Development/Tools
 License  : GPL-2.0+
 Requires: R-deldir-lib = %{version}-%{release}
 BuildRequires : buildreq-R
+BuildRequires : util-linux
 
 %description
 or Voronoi tessellation (with respect to the entire plane) of
@@ -36,10 +37,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1564686114
+export SOURCE_DATE_EPOCH=1571816950
 
 %install
-export SOURCE_DATE_EPOCH=1564686114
+export SOURCE_DATE_EPOCH=1571816950
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
