@@ -4,7 +4,7 @@
 #
 Name     : R-deldir
 Version  : 0.2.10
-Release  : 45
+Release  : 46
 URL      : https://cran.r-project.org/src/contrib/deldir_0.2-10.tar.gz
 Source0  : https://cran.r-project.org/src/contrib/deldir_0.2-10.tar.gz
 Summary  : Delaunay Triangulation and Dirichlet (Voronoi) Tessellation
@@ -38,10 +38,10 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1613516119
+export SOURCE_DATE_EPOCH=1619368359
 
 %install
-export SOURCE_DATE_EPOCH=1613516119
+export SOURCE_DATE_EPOCH=1619368359
 rm -rf %{buildroot}
 export LANG=C.UTF-8
 export CFLAGS="$CFLAGS -O3 -flto -fno-semantic-interposition "
@@ -188,3 +188,4 @@ R CMD check --no-manual --no-examples --no-codoc deldir || :
 %defattr(-,root,root,-)
 /usr/lib64/R/library/deldir/libs/deldir.so
 /usr/lib64/R/library/deldir/libs/deldir.so.avx2
+/usr/lib64/R/library/deldir/libs/deldir.so.avx512
